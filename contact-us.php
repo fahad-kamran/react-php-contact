@@ -2,9 +2,13 @@
 include_once('classes/sendmail.php');
 include_once('config.php');
 
-header("Access-Control-Allow-Origin", "*");
-header("Access-Control-Allow-Methods", "DELETE, POST, GET, OPTIONS");
-header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
+header := w.Header()
+header.Add("Access-Control-Allow-Origin", "*")
+
+if r.Method == "OPTIONS" {
+    w.WriteHeader(http.StatusOK)
+    return
+}
 
 $rest_json = file_get_contents("php://input");
 $_POST = json_decode($rest_json, true);
